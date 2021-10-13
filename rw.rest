@@ -5,3 +5,14 @@ Content-Type: application/json
   "email": "Jant@Doe.com",
   "password" : "123456"
 }
+
+###
+
+POST http://localhost:3000/posts/new
+Content-Type: application/json
+
+{
+  "title": "Be awesome",
+  "body": "Some long text about sttuff",
+  "userId": 3
+}

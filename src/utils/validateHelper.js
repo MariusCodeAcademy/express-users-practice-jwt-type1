@@ -23,6 +23,16 @@ async function validateRegister(req, res, next) {
   }
 }
 
+async function validateNewPost(req, res, next) {}
+
+/* 
+{
+  "title": string, at least 4 letters, required
+  "body": sting, min 10 letters, required
+  "userId": number,  posible values (1, 2, 3)
+}
+*/
+
 module.exports = {
   validateRegister,
 };
