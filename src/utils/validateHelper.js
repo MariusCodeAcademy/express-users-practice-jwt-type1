@@ -2,6 +2,7 @@ const joi = require('joi');
 
 // eslint-disable-next-line consistent-return
 async function validateRegister(req, res, next) {
+  console.log('body got to validate:', req.body);
   // validate body using joi
   const schema = joi.object({
     email: joi.string().email().required(),
