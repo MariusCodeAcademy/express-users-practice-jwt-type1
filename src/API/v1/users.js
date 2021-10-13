@@ -28,6 +28,8 @@ router.post('/register', validateRegister, async (req, res) => {
 // validate with joi
 // user bcryptjs to hash a password
 
-// POST /users/login
+// POST /users/login - authenticate user (email exists, pass match)
+// if valid, generate jwt token with 1h exp date
+// send token back to user
 
 module.exports = router;
