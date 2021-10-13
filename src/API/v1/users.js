@@ -1,4 +1,5 @@
 const express = require('express');
+const { validateRegister } = require('../../utils/validateHelper');
 // const mysql = require('mysql2/promise');
 
 // const { dbConfig } = require('../../config');
@@ -6,7 +7,7 @@ const express = require('express');
 const router = express.Router();
 
 // POST /users/register - create new user,
-router.post('/register', async (req, res) => {
+router.post('/register', validateRegister, async (req, res) => {
   res.json('register user here');
 });
 // validate with joi
