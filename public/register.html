@@ -25,8 +25,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
 
-          <a class="nav-link active" href="index.html">Posts</a>
-          <a class="nav-link" href="register.html">Register</a>
+          <a class="nav-link" href="index.html">Posts</a>
+          <a class="nav-link active" href="register.html">Register</a>
           <a class="nav-link" href="login.html">Login</a>
 
         </div>
@@ -35,9 +35,23 @@
   </nav>
 
   <main class="container">
-    <h1>Hello Users</h1>
+    <h1>Please register</h1>
+    <p>Registered user can create posts</p>
 
-    <p>Welcome to our page</p>
+    <div class="form-container w-50">
+      <form id="register-form">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="text" class="form-control" id="email" name='email' aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name='password'>
+        </div>
+        <button type="submit" class="btn btn-primary">Create User</button>
+      </form>
+    </div>
   </main>
 
 
