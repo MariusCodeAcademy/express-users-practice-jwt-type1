@@ -2,7 +2,7 @@
 // validate with joi
 // add correct userID
 
-// GET /posts/all - list all post from everyone
+// GET /posts/all - list all post from everyone, join user email
 
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
 
