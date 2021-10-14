@@ -6,5 +6,12 @@
 
 # Todo
 
-1. validacija kai tas pats email
-2.
+Padaryti login mehanizma su grazinamu jwt
+
+padaryti front forma loginui ir kad veiktu, issaugodama token
+
+padaryti kad prisilogines vartotojas butu prisilogines ir po perkrovimo(localstorage )
+
+padaryti user posts page front ir back kad matytume tik to vartotojo postus
+
+padatyti bendra posts page kuriame matosi visi postai ir user email
