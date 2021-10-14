@@ -16,3 +16,5 @@
 1. index.html show posts of current user in different color/style
 1. make single post page to load post details dynamically from qurery params
 1. make timeStamp look nice
+1. add posts form too add a post
+1. add posts form only awailable to logged in user requests verified using jwt
