@@ -14,6 +14,15 @@ async function dbAction(sql, dbData = []) {
   }
 }
 
+function dbSuccess(res, data, erroCode = 200) {
+  res.status(erroCode).json({ msg: 'success', data });
+}
+function dbFail(res, errText = 'Something went wrong', erroCode = 500) {
+  res.status(erroCode).json({ error: errText });
+}
+
 module.exports = {
   dbAction,
+  dbSuccess,
+  dbFail,
 };

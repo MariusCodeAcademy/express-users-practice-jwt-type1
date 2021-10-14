@@ -1,6 +1,6 @@
 const express = require('express');
-const { dbAction } = require('../../utils/dbHelper');
-const { hashValue } = require('../../utils/hashHelper');
+const { dbAction, dbFail, dbSuccess } = require('../../utils/dbHelper');
+const { hashValue, verifyHash } = require('../../utils/hashHelper');
 const { validateRegister } = require('../../utils/validateHelper');
 
 const router = express.Router();
@@ -31,5 +31,20 @@ router.post('/register', validateRegister, async (req, res) => {
 // POST /users/login - authenticate user (email exists, pass match)
 // if valid, generate jwt token with 1h exp date
 // send token back to user
+router.post('/login', validateRegister, async (req, res) => {
+  const sql = 'SELECT * FROM users	 WHERE email = ?';
+  const dbResult = await dbAction(sql, [req.body.email]);
+  // check if email exsits
+  if (dbResult.length !== 1) {
+    return dbFail(res, 'email does not exsits', 400);
+  }
+  // email exists
+  // check password
+  if (verifyHash(req.body.password, dbResult[0].password)) {
+    return dbSuccess(res, dbResult);
+  }
+  dbFail(res, 'passwords not match');
+  // create jwt token and send it back
+});
 
 module.exports = router;

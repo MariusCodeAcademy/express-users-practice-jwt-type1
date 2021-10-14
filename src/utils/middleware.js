@@ -1,5 +1,5 @@
 function showBody(req, res, next) {
-  if (req?.body) {
+  if (req.method === 'POST') {
     console.log('The body we got: ', req.body);
   }
   next();

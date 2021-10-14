@@ -1,4 +1,7 @@
-console.log('reg');
+console.log('login');
+
+import { showError } from './helper.js';
+
 const URL = 'http://localhost:3000/users';
 // get form inputs and sendt to our back end api
 // import {blue} from './helper.js'
@@ -18,5 +21,8 @@ formEL.addEventListener('submit', async (e) => {
     body: JSON.stringify(Object.fromEntries(formData)),
   });
   const dataBack = await resp.json();
-  console.log('dataBack', dataBack);
+  console.log('dataBack login', dataBack);
+  if (dataBack.error) {
+    showError(dataBack.error, document.body);
+  }
 });
