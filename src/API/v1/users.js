@@ -2,6 +2,8 @@ const express = require('express');
 const { dbAction, dbFail, dbSuccess } = require('../../utils/dbHelper');
 const { hashValue, verifyHash } = require('../../utils/hashHelper');
 const { validateRegister } = require('../../utils/validateHelper');
+const jwt = require('jsonwebtoken');
+const { jwtSecret } = require('../../config');
 
 const router = express.Router();
 
@@ -40,10 +42,19 @@ router.post('/login', validateRegister, async (req, res) => {
   }
   // email exists
   // check password
-  if (verifyHash(req.body.password, dbResult[0].password)) {
-    return dbSuccess(res, dbResult);
+  if (!verifyHash(req.body.password, dbResult[0].password)) {
+    return dbFail(res, 'passwords not match');
   }
-  dbFail(res, 'passwords not match');
+  // pass match
+  const token = jwt.sign({ email: req.body.email }, jwtSecret, {
+    expiresIn: '1h',
+  });
+
+  const loggeInUser = {
+    email: req.body.email,
+    token: token,
+  };
+  dbSuccess(res, loggeInUser);
   // create jwt token and send it back
 });
 
