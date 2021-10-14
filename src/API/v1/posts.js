@@ -22,5 +22,6 @@ router.post('/new', async (req, res) => {
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
 
 // GET /posts - list all posts from current user, using jwt
+// validate if request had Authorization: Bearer <token>
 
 module.exports = router;
