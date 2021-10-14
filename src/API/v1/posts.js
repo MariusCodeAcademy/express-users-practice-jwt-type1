@@ -1,5 +1,6 @@
 const express = require('express');
 const { dbAction, dbFail, dbSuccess } = require('../../utils/dbHelper');
+const { authenticateToken } = require('../../utils/middleware');
 // const { validateRegister } = require('../../utils/validateHelper');
 
 const router = express.Router();
@@ -32,6 +33,18 @@ router.get('/all', async (req, res) => {
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
 
 // GET /posts - list all posts from current user, using jwt
+router.get('/', authenticateToken, async (req, res) => {
+  const sql = `
+  SELECT posts.postId, posts.title, posts.body, posts.timeStamp, users.email AS author
+  FROM posts
+  INNER JOIN users
+  ON users.userId = posts.userId
+  WHERE users.email = ?
+  `;
+  const dbResult = await dbAction(sql, [req.email]);
+  if (dbResult === false) return dbFail(res);
+  dbSuccess(res, dbResult);
+});
 // validate if request has Authorization: Bearer <token>
 // take email or id from token
 // get all posts belonging to this user
