@@ -32,6 +32,8 @@ router.get('/all', async (req, res) => {
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
 
 // GET /posts - list all posts from current user, using jwt
-// validate if request had Authorization: Bearer <token>
+// validate if request has Authorization: Bearer <token>
+// take email or id from token
+// get all posts belonging to this user
 
 module.exports = router;
