@@ -16,3 +16,7 @@ Content-Type: application/json
   "body": "Some long text about sttuff",
   "userId": 3
 }
+
+####
+
+GET http://localhost:3000/posts/all

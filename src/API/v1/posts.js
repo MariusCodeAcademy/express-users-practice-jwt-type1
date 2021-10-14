@@ -1,5 +1,5 @@
 const express = require('express');
-const { dbAction } = require('../../utils/dbHelper');
+const { dbAction, dbFail, dbSuccess } = require('../../utils/dbHelper');
 // const { validateRegister } = require('../../utils/validateHelper');
 
 const router = express.Router();
@@ -24,6 +24,9 @@ router.get('/all', async (req, res) => {
   FROM posts
   INNER JOIN users
   ON users.userId = posts.userId`;
+  const dbResult = await dbAction(sql);
+  if (dbResult === false) return dbFail(res);
+  dbSuccess(res, dbResult);
 });
 
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
