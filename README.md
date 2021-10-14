@@ -15,3 +15,5 @@ padaryti kad prisilogines vartotojas butu prisilogines ir po perkrovimo(localsto
 padaryti user posts page front ir back kad matytume tik to vartotojo postus
 
 padatyti bendra posts page kuriame matosi visi postai ir user email
+
+hide login and reg if user is logged in

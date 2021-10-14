@@ -18,6 +18,13 @@ router.post('/new', async (req, res) => {
 });
 
 // GET /posts/all - list all post from everyone, join user email
+router.get('/all', async (req, res) => {
+  const sql = `
+  SELECT posts.postId, posts.title, posts.body, posts.timeStamp, users.email AS author
+  FROM posts
+  INNER JOIN users
+  ON users.userId = posts.userId`;
+});
 
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
 

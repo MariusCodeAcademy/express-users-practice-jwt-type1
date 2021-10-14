@@ -8,5 +8,5 @@ export function showError(errText, dest) {
   </div>
   `;
 
-  dest.insertAdjacentHTML('afterBegin', errHtml);
+  dest.innerHTML = errHtml;
 }

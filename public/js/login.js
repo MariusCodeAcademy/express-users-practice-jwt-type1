@@ -6,6 +6,7 @@ const URL = 'http://localhost:3000/users';
 // get form inputs and sendt to our back end api
 // import {blue} from './helper.js'
 const formEL = document.getElementById('login-form');
+const errorEl = document.querySelector('.errors');
 
 formEL.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -23,6 +24,13 @@ formEL.addEventListener('submit', async (e) => {
   const dataBack = await resp.json();
   console.log('dataBack login', dataBack);
   if (dataBack.error) {
-    showError(dataBack.error, document.body);
+    showError(dataBack.error, errorEl);
+  }
+  if (dataBack.msg === 'success') {
+    const { email, token } = dataBack.data;
+    localStorage.setItem('email', email);
+    localStorage.setItem('token', token);
+    // redirect to home page
+    window.location = 'index.html';
   }
 });
