@@ -36,3 +36,6 @@ GET http://localhost:3000/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbWVzQGJvbmQuY29tIiwiaWF0IjoxNjM0Mjc0NTk4LCJleHAiOjE2MzQyNzgxOTh9.FNm4RQCMow2quq3j-TdWSXyux3GKtdupfvKh-iF_QrE
 # edited token
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pa2VAdHlzb24uY29tIiwiaWF0IjoxNjM0MjAxNjA1LCJleHAiOjE2MzQyMDUyMDV9.3Hc5zS0payqU59oRFJdQgsxieKWbD3prcLFOYIdXj2Q
+
+###
+DELETE  http://localhost:3000/posts/34

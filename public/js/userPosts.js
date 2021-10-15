@@ -10,8 +10,9 @@ const mainNavEl = document.querySelector('.navbar-nav');
 
 const { email, token } = getUser();
 
-async function fetchData(urlPath = '') {
+async function fetchData(urlPath = '', reqMethod = 'GET') {
   const resp = await fetch(`${URL}${urlPath}`, {
+    method: reqMethod,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -56,7 +57,7 @@ function generatePosts(dataArr, dest) {
         <div class="card-body">
           <h5 class="card-title">${post.title}</h5>
           <a href="single-posts.html?postId=${post.postId}" class="btn btn-primary btn-sm">See more</a>
-          <button data-postid='${post.postId}' class="btn btn-sm btn-danger">Delete</button>
+          <button data-postid='${post.postId}' class="btn btn-sm btn-danger delete-post">Delete</button>
         </div>
         <div class="card-footer">Time ${post.timeStamp}</div>
       </div>
@@ -101,6 +102,15 @@ function logoutHandler() {
 }
 
 // delete action
-// 1 get delete btn and id
-// 2 send DELETE /posts/:id (authorization jwt)
+postsContainer.addEventListener('click', async (e) => {
+  // if we cliced on el with class 'delete-post'
+  if (e.target.classList.contains('delete-post')) {
+    // 1 get delete btn and id
+    const id = e.target.dataset.postid;
+    console.log('Delete in action ', id);
+    // 2 send DELETE /posts/:id (authorization jwt)
+    const dataBack = await fetchData(`/${id}`, 'DELETE');
+    console.log('dataBack delete', dataBack);
+  }
+});
 // 3. check if succes and refresh or rm item

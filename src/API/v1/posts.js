@@ -31,6 +31,9 @@ router.get('/all', async (req, res) => {
 });
 
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
+router.delete('/:id', authenticateToken, async (req, res) => {
+  res.json({ msg: 'trying to delete post ', id: req.params.id });
+});
 
 // GET /posts - list all posts from current user, using jwt
 router.get('/', authenticateToken, async (req, res) => {
