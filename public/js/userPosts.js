@@ -111,6 +111,9 @@ postsContainer.addEventListener('click', async (e) => {
     // 2 send DELETE /posts/:id (authorization jwt)
     const dataBack = await fetchData(`/${id}`, 'DELETE');
     console.log('dataBack delete', dataBack);
+    if (dataBack.msg === 'success') {
+      window.location.reload();
+    }
   }
 });
 // 3. check if succes and refresh or rm item

@@ -32,7 +32,15 @@ router.get('/all', async (req, res) => {
 
 // DELETE /posts/:id - delete post with postId === :id, Validate with jwt
 router.delete('/:id', authenticateToken, async (req, res) => {
-  res.json({ msg: 'trying to delete post ', id: req.params.id });
+  const sql = 'DELETE FROM posts WHERE postId = ? LIMIT 1';
+  const dbResult = await dbAction(sql, [req.params.id]);
+  if (dbResult === false) {
+    dbFail(res);
+  }
+  if (dbResult.affectedRows === 1) {
+    return dbSuccess(res, []);
+  }
+  dbFail(res, 'no rows affected');
 });
 
 // GET /posts - list all posts from current user, using jwt
