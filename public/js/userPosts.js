@@ -1,4 +1,4 @@
-import { getUser } from './helper.js';
+import { getUser, generateNav } from './helper.js';
 
 console.log('userPosts');
 const URL = 'http://localhost:3000/posts';
@@ -6,9 +6,9 @@ const URL = 'http://localhost:3000/posts';
 // elements
 const postsContainer = document.querySelector('.posts-container');
 const mainTitleEl = document.querySelector('.main-title');
+const mainNavEl = document.querySelector('.navbar-nav');
 
 const { email, token } = getUser();
-mainTitleEl.innerHTML += email;
 
 async function fetchData(urlPath = '') {
   const resp = await fetch(`${URL}${urlPath}`, {
@@ -24,6 +24,8 @@ async function init() {
   const allPostsArr = await getPost();
   // console.log('allPostsArr', allPostsArr);
   generatePosts(allPostsArr, postsContainer);
+  mainTitleEl.innerHTML += email;
+  initNav();
 }
 init();
 
@@ -53,4 +55,26 @@ function generatePosts(dataArr, dest) {
   `,
     )
     .join('');
+}
+
+// create navigation
+function initNav() {
+  const navArr = [
+    {
+      title: 'Posts',
+      url: 'index.html',
+      extraClass: '',
+    },
+    {
+      title: 'User posts',
+      url: 'user-posts.html',
+      extraClass: 'active',
+    },
+    {
+      title: email,
+      url: '#',
+      extraClass: 'disabled',
+    },
+  ];
+  generateNav(navArr, mainNavEl);
 }

@@ -22,3 +22,12 @@ export function getUser() {
   }
   return false;
 }
+
+export function generateNav(arr, dest) {
+  dest.innerHTML = arr
+    .map(
+      (el) => `
+  <a class="nav-link ${el.extraClass}" href="${el.url}">${el.title}</a>`,
+    )
+    .join('');
+}
