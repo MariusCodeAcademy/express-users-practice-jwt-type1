@@ -1,4 +1,4 @@
-import { getUser, generateNav } from './helper.js';
+import { getUser, generateNav, logout } from './helper.js';
 
 console.log('front');
 const URL = 'http://localhost:3000/posts';
@@ -75,5 +75,30 @@ function initNav() {
       extraClass: '',
     },
   ];
-  generateNav(navArr, mainNavEl);
+  const navNotLoggedIn = [
+    {
+      title: 'Posts',
+      url: 'index.html',
+      extraClass: 'active',
+    },
+    {
+      title: 'Register',
+      url: 'register.html',
+      extraClass: '',
+    },
+    {
+      title: 'Login',
+      url: 'login.html',
+      extraClass: '',
+    },
+  ];
+  // generate diferent nav depending on user
+  generateNav(email ? navArr : navNotLoggedIn, mainNavEl);
+  logoutHandler();
+}
+// logout button
+function logoutHandler() {
+  const logoutLinkEl = mainNavEl.querySelector("a[href='#logout']");
+  console.log('logoutLinkEl', logoutLinkEl);
+  logoutLinkEl.addEventListener('click', logout);
 }
