@@ -45,4 +45,7 @@
 9. add pagination. ability to show only 3 or 2 posts per page
 10. Register page should display error if trying to add email that is already taken
 11. Display all error then we get back data with error field similar like we do in login form
-12.
+12. Refactor code to implement Dry (dont repeat yourself). externalize functions and import them as needed
+13. Dynamic main nav links in all pages
+14. In main home page check if token is still valid, if not logout user
+15. replicate no14 in all pages. try not to dublicate too much
