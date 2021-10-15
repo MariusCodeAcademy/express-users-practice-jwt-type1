@@ -10,3 +10,15 @@ export function showError(errText, dest) {
 
   dest.innerHTML = errHtml;
 }
+
+export function getUser() {
+  const email = localStorage.getItem('email');
+  const token = localStorage.getItem('token');
+  if (email && token) {
+    return {
+      email,
+      token,
+    };
+  }
+  return false;
+}
