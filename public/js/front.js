@@ -1,8 +1,13 @@
+import { getUser, generateNav } from './helper.js';
+
 console.log('front');
 const URL = 'http://localhost:3000/posts';
 
 // elements
 const postsContainer = document.querySelector('.posts-container');
+const mainNavEl = document.querySelector('.navbar-nav');
+
+const { email, token } = getUser();
 
 async function fetchData(urlPath) {
   const resp = await fetch(`${URL}${urlPath}`);
@@ -14,6 +19,7 @@ async function init() {
   const allPostsArr = await getPost();
   // console.log('allPostsArr', allPostsArr);
   generatePosts(allPostsArr, postsContainer);
+  initNav();
 }
 init();
 
@@ -43,4 +49,31 @@ function generatePosts(dataArr, dest) {
   `,
     )
     .join('');
+}
+
+// create navigation
+function initNav() {
+  const navArr = [
+    {
+      title: 'Posts',
+      url: 'index.html',
+      extraClass: 'active',
+    },
+    {
+      title: 'User posts',
+      url: 'user-posts.html',
+      extraClass: '',
+    },
+    {
+      title: email,
+      url: '#',
+      extraClass: 'disabled',
+    },
+    {
+      title: 'Logout',
+      url: '#logout',
+      extraClass: '',
+    },
+  ];
+  generateNav(navArr, mainNavEl);
 }

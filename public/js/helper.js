@@ -31,3 +31,9 @@ export function generateNav(arr, dest) {
     )
     .join('');
 }
+
+export function logout() {
+  localStorage.removeItem('email');
+  localStorage.removeItem('token');
+  window.location.href = 'login.html';
+}

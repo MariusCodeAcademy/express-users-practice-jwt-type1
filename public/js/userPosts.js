@@ -1,4 +1,4 @@
-import { getUser, generateNav } from './helper.js';
+import { getUser, generateNav, logout } from './helper.js';
 
 console.log('userPosts');
 const URL = 'http://localhost:3000/posts';
@@ -20,7 +20,14 @@ async function fetchData(urlPath = '') {
   return dataFromResp;
 }
 
+function checkIfUserLoggedIn() {
+  if (!email) {
+    window.location.href = 'login.html';
+  }
+}
+
 async function init() {
+  checkIfUserLoggedIn();
   const allPostsArr = await getPost();
   // console.log('allPostsArr', allPostsArr);
   generatePosts(allPostsArr, postsContainer);
@@ -75,6 +82,19 @@ function initNav() {
       url: '#',
       extraClass: 'disabled',
     },
+    {
+      title: 'Logout',
+      url: '#logout',
+      extraClass: '',
+    },
   ];
   generateNav(navArr, mainNavEl);
+  logoutHandler();
+}
+
+// logout button
+function logoutHandler() {
+  const logoutLinkEl = mainNavEl.querySelector("a[href='#logout']");
+  console.log('logoutLinkEl', logoutLinkEl);
+  logoutLinkEl.addEventListener('click', logout);
 }
