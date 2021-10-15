@@ -35,14 +35,25 @@ async function getPost() {
 
 // generate cards with post data
 function generatePosts(dataArr, dest) {
+  console.log('email', email);
+  console.log('author', dataArr[0].author);
+  console.log('author', dataArr[1].author);
+  console.log('author', dataArr[2].author);
+
   dest.innerHTML = dataArr
     .map(
       (post) => `
-      <div class="card m-2 ">
+      <div class="card m-2 ${
+        email.toLowerCase() === post.author.toLowerCase()
+          ? 'bg-info text-light '
+          : ''
+      } ">
         <div class="card-header">Author: ${post.author}</div>
         <div class="card-body">
           <h5 class="card-title">${post.title}</h5>
-          <a href="single-posts.html?postId=${post.postId}" class="btn btn-primary btn-sm">See more</a>
+          <a href="single-posts.html?postId=${
+            post.postId
+          }" class="btn btn-primary btn-sm">See more</a>
         </div>
         <div class="card-footer">Time ${post.timeStamp}</div>
       </div>
@@ -94,7 +105,9 @@ function initNav() {
   ];
   // generate diferent nav depending on user
   generateNav(email ? navArr : navNotLoggedIn, mainNavEl);
-  logoutHandler();
+  if (email) {
+    logoutHandler();
+  }
 }
 // logout button
 function logoutHandler() {

@@ -43,3 +43,6 @@
 8. in main post page if user is logged in show button to filter data that own posts
    are first and then all rest.
 9. add pagination. ability to show only 3 or 2 posts per page
+10. Register page should display error if trying to add email that is already taken
+11. Display all error then we get back data with error field similar like we do in login form
+12.
