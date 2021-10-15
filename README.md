@@ -28,3 +28,18 @@
 5. modify posts table. add column 'archived' boolean. Default value is false.
    4.1 When we try to delete post, instead of deleting make 'archived' value true
    4.2 in all posts page show only posts that are not 'archived'
+
+## practice more tasks
+
+1. Add different amount of comments to posts
+2. Display number of comments in all posts page
+3. Add categories table with at least 3 categories
+4. create ability to asign category to post for users than own posts
+5. in main posts page above posts add categories check boxes and filter
+   posts using checkboxes (add 'all' checkbox too)
+6. main posts page above posts add sort select box and allow to sort by any column that are displayed. (select column, select ASC or DESC and button to sort)
+   sort using query params
+7. Add ability to edit post in single post view for a user that is owner of the posts
+8. in main post page if user is logged in show button to filter data that own posts
+   are first and then all rest.
+9. add pagination. ability to show only 3 or 2 posts per page
