@@ -56,6 +56,7 @@ function generatePosts(dataArr, dest) {
         <div class="card-body">
           <h5 class="card-title">${post.title}</h5>
           <a href="single-posts.html?postId=${post.postId}" class="btn btn-primary btn-sm">See more</a>
+          <button data-postid='${post.postId}' class="btn btn-sm btn-danger">Delete</button>
         </div>
         <div class="card-footer">Time ${post.timeStamp}</div>
       </div>
@@ -98,3 +99,8 @@ function logoutHandler() {
   console.log('logoutLinkEl', logoutLinkEl);
   logoutLinkEl.addEventListener('click', logout);
 }
+
+// delete action
+// 1 get delete btn and id
+// 2 send DELETE /posts/:id (authorization jwt)
+// 3. check if succes and refresh or rm item
